@@ -15,3 +15,6 @@ CREATE TABLE todoItems (
 );
 
 
+-- sub item table
+
+
