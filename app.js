@@ -4,7 +4,7 @@ const cors = require("cors");
 const todoListsController = require('./controllers/todoList.js')
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); //parse json
 
 app.get("/", (req, res)=>{
     res.send("we made it");
