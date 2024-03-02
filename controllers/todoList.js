@@ -6,14 +6,14 @@ const {
   updateItem,
   deleteItem,
   createItem,
-  getItemsByDate,
+  getItemsByMonthAndYear,
 } = require("../queries/todolist.js");
 
 todoList.get("/", async (req, res) => {
-  const { date } = req.query;
+  const { month, year } = req.query;
   try {
-      const items = date ? await getItemsByDate(date) : await getAllItems();
-      res.status(200).json(items);
+    const items = month && year ? await getItemsByMonthAndYear(month,year) : await getAllItems();
+    res.status(200).json(items);
   } catch (error) {
     res.status(404).json({ error });
   }

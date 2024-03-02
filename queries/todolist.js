@@ -10,9 +10,9 @@ const getAllItems = async ()=> {
     }
 }
 
-const getItemsByDate = async (date) => {
+const getItemsByMonthAndYear = async (month,year) => {
     try {
-        const itemsByDate = await db.any('SELECT * FROM todoItems WHERE CAST(due_date AS DATE)=$1', date)
+        const itemsByDate = await db.any('SELECT * FROM todoItems WHERE EXTRACT(MONTH FROM due_date) = $1 AND EXTRACT(YEAR FROM due_date) = $2', [month,year])
         return itemsByDate
     }catch(error){
         return error
@@ -63,5 +63,5 @@ module.exports = {
     updateItem,
     createItem,
     deleteItem,
-    getItemsByDate
+    getItemsByMonthAndYear
 }
