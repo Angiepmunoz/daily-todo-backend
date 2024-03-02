@@ -10,6 +10,15 @@ const getAllItems = async ()=> {
     }
 }
 
+const getItemsByDate = async (date) => {
+    try {
+        const itemsByDate = await db.any('SELECT * FROM todoItems WHERE CAST(due_date AS DATE)=$1', date)
+        return itemsByDate
+    }catch(error){
+        return error
+    }
+}
+
 const getOneItem = async (id) => {
     try {
         const oneItem = await db.one('SELECT * FROM todoItems WHERE id=$1', id );
@@ -53,5 +62,6 @@ module.exports = {
     getOneItem,
     updateItem,
     createItem,
-    deleteItem
+    deleteItem,
+    getItemsByDate
 }
