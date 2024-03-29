@@ -9,6 +9,7 @@ const {
   getItemsByMonthAndYear,
 } = require("../queries/todolist.js");
 
+
 todoList.get("/", async (req, res) => {
   const { month, year } = req.query;
   try {
@@ -31,6 +32,7 @@ todoList.get("/:id", async (req, res) => {
 
 todoList.post("/", async (req, res) => {
   const item = req.body;
+  console.log(formmattedTask)
   try {
     const createdItem = await createItem(item);
     res.status(200).json(createdItem);
