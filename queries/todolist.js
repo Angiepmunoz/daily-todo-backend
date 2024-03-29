@@ -21,7 +21,7 @@ const getItemsByMonthAndYear = async (month,year) => {
 
 const getOneItem = async (id) => {
     try {
-        const oneItem = await db.one("SELECT * FROM todoItems WHERE id=$1,to_char(due_date, 'Month DD, YYYY') AS formatted_due_date, to_char(time_of_day,'HH12:MI AM') AS formatted_time", id );
+        const oneItem = await db.one("SELECT * FROM todoItems, to_char(due_date, 'Month DD, YYYY') AS formatted_due_date, to_char(time_of_day,'HH12:MI AM') AS formatted_time WHERE id=$1", id );
         return oneItem;
     } catch (error) {
         return error
